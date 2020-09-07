@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  publicholiday.calculator:
+    image: ${DOCKER_REGISTRY-}publicholidaycalculator
+    build:
+      context: .
+      dockerfile: src/PublicHoliday.Calculator/Dockerfile
