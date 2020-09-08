@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using EnsureThat;
+using System.Globalization;
 
 namespace PublicHoliday.Calculator.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CalculatorController : ControllerBase
     {
         private readonly ILogger<CalculatorController> _logger;
@@ -18,10 +20,22 @@ namespace PublicHoliday.Calculator.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public ActionResult Get()
+        /// <summary>
+        /// This endpoint accepts a date range to calculate the number of business days
+        /// </summary>
+        /// <param name="EndDateExclusive">yyyy-MM-dd</param>
+        /// <param name="StartDateExclusive">yyyy-MM-dd</param>
+        /// <returns></returns>
+        [HttpPost("CountBusinessDays")]
+        public ActionResult CountBusinessDaysFromARange(string StartDateExclusive, string EndDateExclusive)
         {
-            return Ok();
+            EnsureArg.HasValue(StartDateExclusive);
+            EnsureArg.HasValue(EndDateExclusive);
+
+            var start = DateTime.ParseExact(StartDateExclusive, "yyyy-MM-dd",CultureInfo.InvariantCulture);
+            var end = DateTime.ParseExact(EndDateExclusive, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            return Ok(StartDateExclusive);
         }
     }
 }

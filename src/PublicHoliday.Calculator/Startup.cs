@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +12,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using PublicHoliday.Calculator.Middleware;
+using PublicHoliday.Calculator.Source.Db.Configuration;
+using PublicHoliday.Calculator.Source.Db.SeedData;
 
 namespace PublicHoliday.Calculator
 {
@@ -26,11 +31,17 @@ namespace PublicHoliday.Calculator
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            DbSetup.Init(services, Configuration);
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            services.AddControllers();
+             
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Calculator Api", Version = "v1" });
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "PublicHoliday.Calculator.xml");
+                c.IncludeXmlComments(filePath);
             });
         }
 
@@ -39,8 +50,11 @@ namespace PublicHoliday.Calculator
         {
             if (env.IsDevelopment())
             {
+                SeedData.Populate(app);
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware<ControllerExceptionHandlerMiddleware>();
 
             app.UseHttpsRedirection();
 

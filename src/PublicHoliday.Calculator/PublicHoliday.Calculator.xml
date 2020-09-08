@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PublicHoliday.Calculator</name>
+    </assembly>
+    <members>
+        <member name="M:PublicHoliday.Calculator.Controllers.CalculatorController.CountBusinessDaysFromARange(System.String,System.String)">
+            <summary>
+            This endpoint accepts a date range to calculate the number of business days
+            </summary>
+            <param name="EndDateExclusive">yyyy-MM-dd</param>
+            <param name="StartDateExclusive">yyyy-MM-dd</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

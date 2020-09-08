@@ -1,6 +1,13 @@
 version: '3.4'
 
 services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-CU5-ubuntu-18.04
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: Vr23G)S>Qjk2D/Q
   publicholiday.calculator:
     image: ${DOCKER_REGISTRY-}publicholidaycalculator
     build:
