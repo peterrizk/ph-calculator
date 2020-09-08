@@ -9,7 +9,7 @@ using PublicHoliday.Calculator.Source.Db.Data;
 namespace PublicHoliday.Calculator.Source.Db.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200908125841_Init")]
+    [Migration("20200908131626_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,9 +35,6 @@ namespace PublicHoliday.Calculator.Source.Db.Migrations
 
                     b.Property<int>("InstanceOfDay")
                         .HasColumnType("int");
-
-                    b.Property<bool>("LeapYear")
-                        .HasColumnType("bit");
 
                     b.Property<int>("Month")
                         .HasColumnType("int");

@@ -18,6 +18,10 @@ namespace PublicHoliday.Calculator
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+             .ConfigureLogging(logging =>
+             {
+                 logging.AddConsole(); // would typically add logging to a third party source for production quality code.
+             })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

@@ -34,9 +34,6 @@ namespace PublicHoliday.Calculator.Source.Db.Migrations
                     b.Property<int>("InstanceOfDay")
                         .HasColumnType("int");
 
-                    b.Property<bool>("LeapYear")
-                        .HasColumnType("bit");
-
                     b.Property<int>("Month")
                         .HasColumnType("int");
 

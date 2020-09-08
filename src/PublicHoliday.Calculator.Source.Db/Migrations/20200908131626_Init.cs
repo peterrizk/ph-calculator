@@ -16,7 +16,6 @@ namespace PublicHoliday.Calculator.Source.Db.Migrations
                     Month = table.Column<int>(nullable: false),
                     DayOfTheWeek = table.Column<int>(nullable: false),
                     InstanceOfDay = table.Column<int>(nullable: false),
-                    LeapYear = table.Column<bool>(nullable: false),
                     TheType = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

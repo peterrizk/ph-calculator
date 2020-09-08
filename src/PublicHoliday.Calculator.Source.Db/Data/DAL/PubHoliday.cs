@@ -16,7 +16,6 @@ namespace PublicHoliday.Calculator.Source.Db.Data.DAL
         /// first monday(1) or second monday(2) etc.
         /// </summary>
         public int InstanceOfDay{ get; set; } 
-        public bool LeapYear { get; set; }
         public HolidayType TheType { get; set; }
     }
 
