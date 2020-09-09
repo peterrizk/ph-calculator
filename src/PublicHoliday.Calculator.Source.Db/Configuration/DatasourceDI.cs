@@ -7,7 +7,7 @@ using System.Text;
 
 namespace PublicHoliday.Calculator.Source.Db.Configuration
 {
-    public static class DI
+    public static class DatasourceDI
     {
         public static void Setup(IServiceCollection services)
         {

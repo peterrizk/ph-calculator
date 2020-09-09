@@ -21,7 +21,7 @@ namespace PublicHoliday.Calculator.Controllers
         }
 
         /// <summary>
-        /// This endpoint accepts a date range to calculate the number of business days
+        /// This endpoint accepts a date range to calculate the number of business days based on Sydney time.
         /// </summary>
         /// <param name="EndDateExclusive">yyyy-MM-dd</param>
         /// <param name="StartDateExclusive">yyyy-MM-dd</param>

@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
+using PublicHoliday.Calculator.Core;
 using PublicHoliday.Calculator.Middleware;
 using PublicHoliday.Calculator.Source.Db.Configuration;
 using PublicHoliday.Calculator.Source.Db.SeedData;
@@ -32,7 +26,10 @@ namespace PublicHoliday.Calculator
         public void ConfigureServices(IServiceCollection services)
         {
             DbSetup.Init(services, Configuration);
-            DI.Setup(services);
+
+            DatasourceDI.Setup(services);
+
+            services.AddScoped<BusinessDaysCalculator>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
