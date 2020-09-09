@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using NodaTime;
 using PublicHoliday.Calculator.Source.Db.Data;
 using PublicHoliday.Calculator.Source.Db.Data.DAL;
 using System;
@@ -39,7 +40,7 @@ namespace PublicHoliday.Calculator.Source.Db.SeedData
                     },
                     new PubHoliday()
                     {
-                        DayOfTheWeek = DayOfWeek.Monday,//Queens Birthday
+                        DayOfTheWeek = IsoDayOfWeek.Monday,//Queens Birthday
                         Month = 6,
                         InstanceOfDay = 2,
                         TheType = HolidayType.DynamicRule

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NodaTime;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace PublicHoliday.Calculator.Source.Db.Data.DAL
         public int Id { get; set; }
         public int Day { get; set; }
         public int Month { get; set; }
-        public DayOfWeek DayOfTheWeek { get; set; }
+        public IsoDayOfWeek DayOfTheWeek { get; set; }
         /// <summary>
         /// first monday(1) or second monday(2) etc.
         /// </summary>
