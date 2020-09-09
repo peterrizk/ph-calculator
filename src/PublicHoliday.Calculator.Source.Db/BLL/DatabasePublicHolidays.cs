@@ -69,7 +69,7 @@ namespace PublicHoliday.Calculator.Source.Db.BLL
             {
                 if (instance.DayOfWeek == day) count++;
                 if (instanceOfDay == count) return instance;
-                instance.PlusHours(24);
+                instance = instance.PlusHours(24);
             }
             throw new Exception($"Public holiday not found day:{day} instanfceOfday:{instanceOfDay} month:{month} year:{year}");
         }

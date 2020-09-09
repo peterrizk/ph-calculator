@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using EnsureThat;
 using System.Globalization;
+using PublicHoliday.Calculator.Core;
 
 namespace PublicHoliday.Calculator.Controllers
 {
@@ -14,20 +15,24 @@ namespace PublicHoliday.Calculator.Controllers
     public class CalculatorController : ControllerBase
     {
         private readonly ILogger<CalculatorController> _logger;
+        private readonly BusinessDaysCalculator calculator;
 
-        public CalculatorController(ILogger<CalculatorController> logger)
+        public CalculatorController(ILogger<CalculatorController> logger
+            , BusinessDaysCalculator calculator)
         {
             _logger = logger;
+            this.calculator = calculator;
         }
 
         /// <summary>
         /// This endpoint accepts a date range to calculate the number of business days based on Sydney time.
+        /// Assumes the date range is in the same year.
         /// </summary>
         /// <param name="EndDateExclusive">yyyy-MM-dd</param>
         /// <param name="StartDateExclusive">yyyy-MM-dd</param>
         /// <returns></returns>
         [HttpPost("CountBusinessDays")]
-        public ActionResult CountBusinessDaysFromARange(string StartDateExclusive, string EndDateExclusive)
+        public async Task<ActionResult> CountBusinessDaysFromARange(string StartDateExclusive, string EndDateExclusive)
         {
             EnsureArg.HasValue(StartDateExclusive);
             EnsureArg.HasValue(EndDateExclusive);
@@ -35,7 +40,9 @@ namespace PublicHoliday.Calculator.Controllers
             var start = DateTime.ParseExact(StartDateExclusive, "yyyy-MM-dd",CultureInfo.InvariantCulture);
             var end = DateTime.ParseExact(EndDateExclusive, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-            return Ok(StartDateExclusive);
+            var count = await calculator.count(start, end);
+
+            return Ok(count);
         }
     }
 }

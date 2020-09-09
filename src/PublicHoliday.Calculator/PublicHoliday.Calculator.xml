@@ -6,7 +6,8 @@
     <members>
         <member name="M:PublicHoliday.Calculator.Controllers.CalculatorController.CountBusinessDaysFromARange(System.String,System.String)">
             <summary>
-            This endpoint accepts a date range to calculate the number of business days
+            This endpoint accepts a date range to calculate the number of business days based on Sydney time.
+            Assumes the date range is in the same year.
             </summary>
             <param name="EndDateExclusive">yyyy-MM-dd</param>
             <param name="StartDateExclusive">yyyy-MM-dd</param>
