@@ -36,9 +36,11 @@ namespace PublicHoliday.Calculator.Controllers
         {
             EnsureArg.HasValue(StartDateExclusive);
             EnsureArg.HasValue(EndDateExclusive);
-
+            
             var start = DateTime.ParseExact(StartDateExclusive, "yyyy-MM-dd",CultureInfo.InvariantCulture);
             var end = DateTime.ParseExact(EndDateExclusive, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            EnsureArg.IsLt(start, end);
 
             var count = await calculator.count(start, end);
 
