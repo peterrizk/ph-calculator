@@ -32,6 +32,7 @@ namespace PublicHoliday.Calculator
         public void ConfigureServices(IServiceCollection services)
         {
             DbSetup.Init(services, Configuration);
+            DI.Setup(services);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 

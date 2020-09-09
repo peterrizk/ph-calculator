@@ -7,6 +7,6 @@ namespace PublicHoliday.Calculator.Core
 {
     public interface IPublicHolidayDatasource
     {
-        Task<IEnumerable<Instant>> List(int year);
+        IAsyncEnumerable<ZonedDateTime> List(int year);
     }
 }

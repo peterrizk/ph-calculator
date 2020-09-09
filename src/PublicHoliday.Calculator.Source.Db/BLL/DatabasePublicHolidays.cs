@@ -20,9 +20,9 @@ namespace PublicHoliday.Calculator.Source.Db.BLL
             this.dataContext = dataContext;
         }
 
-        public Task<IEnumerable<Instant>> List(int year)
+        public IAsyncEnumerable<ZonedDateTime> List(int year)
         {
-            throw new NotImplementedException();
+            return Compute(year);
         }
 
         private async IAsyncEnumerable<ZonedDateTime> Compute(int year)
